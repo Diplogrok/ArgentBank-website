@@ -1,12 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import SignInForm from "../components/SignInForm";
 
 function SignIn() {
   return (
-    <>
-      <h1>Hello</h1>
-      <NavLink to="/UserPage">Go to User Page</NavLink>
-    </>
+    <div className="bg-purple-900 h-screen flex justify-center items-center">
+      <SignInForm />
+    </div>
   );
 }
 
