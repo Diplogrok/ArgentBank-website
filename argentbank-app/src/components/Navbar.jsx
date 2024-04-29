@@ -1,11 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "../assets/css/index.css";
 
 const Navbar = () => {
   return (
-    <header className="App-header">
+    <header className="bg-red-900">
       <nav>
-        <NavLink to="/">HomePage</NavLink>
+        <NavLink to="/">ARGENT BANK</NavLink>
         <NavLink to="/SignIn">SignIn</NavLink>
       </nav>
     </header>

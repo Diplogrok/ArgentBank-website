@@ -1,15 +1,13 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
-import "../index.css";
 import PageError from "../pages/PageError";
-import Layout from "../components/Layout"; // Importez votre Layout
+import Layout from "../components/Layout";
 import Root from "../pages/Root";
 import UserPage from "../pages/UserPage";
 import SignIn from "../pages/SignIn";
-
+import "../assets/css/index.css";
 const router = createBrowserRouter([
-  // Utilisez Layout pour chaque page
   {
     path: "/",
     element: (
