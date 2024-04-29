@@ -1,6 +1,7 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
+import "../index.css";
 import PageError from "../pages/PageError";
 import Root from "../pages/Root";
 import UserPage from "../pages/UserPage";

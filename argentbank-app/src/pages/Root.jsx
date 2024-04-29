@@ -8,7 +8,7 @@ function Root() {
 
   return (
     <>
-      <header className="App-header">
+      <header>
         <nav>
           <NavLink to="/">HomePage</NavLink>
           <NavLink to="/SignIn">SignIn</NavLink>
