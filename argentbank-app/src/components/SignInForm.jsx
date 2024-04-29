@@ -12,9 +12,9 @@ function SignInForm() {
   const handleSignIn = () => {};
 
   return (
-    <form className="bg-white p-4">
-      <i className="fa fa-user-circle sign-in-icon mb-8"></i>
-      <h1 className="text-3xl mb-8">Sign In</h1>
+    <form className="bg-white p-4 pr-12 pl-12">
+      <i className="fa fa-user-circle sign-in-icon pt-4 pb-4"></i>
+      <h1 className="text-2xl font-bold mb-8">Sign In</h1>
       <FormInput
         label="Username"
         type="text"
@@ -35,9 +35,7 @@ function SignInForm() {
         />
       </div>
       <Button onClick={handleSignIn}>Sign In</Button>
-      <NavLink
-        to="/UserPage"
-        className="block mt-4 text-center text-purple-500">
+      <NavLink to="/UserPage" className=" mt-4  text-purple-500">
         Go to User Page
       </NavLink>
     </form>

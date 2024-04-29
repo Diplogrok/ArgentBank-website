@@ -2,8 +2,10 @@ import React from "react";
 
 const FormInput = ({ label, type, value, onChange }) => {
   return (
-    <div className="mb-4 ">
-      <label htmlFor={label} className="block text-gray-700 font-bold mb-2">
+    <div className="mb-4">
+      <label
+        htmlFor={label}
+        className="block text-gray-700 font-bold text-left">
         {label}
       </label>
       <input
@@ -11,7 +13,7 @@ const FormInput = ({ label, type, value, onChange }) => {
         id={label}
         value={value}
         onChange={onChange}
-        className="border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        className="border border-black w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       />
     </div>
   );
