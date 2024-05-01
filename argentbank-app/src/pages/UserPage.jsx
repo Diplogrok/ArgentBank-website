@@ -1,19 +1,32 @@
 import React from "react";
-import { NavLink, useLoaderData } from "react-router-dom";
+import Button from "../components/Button";
+import UserCard from "../components/UserCard";
+import userData from "../assets/data/TonyStark.json";
 
 function UserPage() {
-  const data = useLoaderData();
-
   return (
     <>
-      <h1>Welcome back</h1>
-      <ul>
-        {data.map((dataItem) => (
-          <li key={dataItem.id}>
-            <NavLink to={dataItem.id}>{dataItem.title}</NavLink>
-          </li>
-        ))}
-      </ul>
+      <main className=" bg-violet-950 flex flex-col items-center justify-center">
+        <div className=" text-white text-center">
+          <h1 className=" font-bold text-1xl md:text-2xl lg:text-3xl">
+            Welcome back
+            <br />
+            Tony Stark!
+          </h1>
+          <Button>Edit Name</Button>
+        </div>
+        <div>
+          <h2 className="sr-only">Accounts</h2>
+          {userData.map((account) => (
+            <UserCard
+              key={account.id}
+              title={account.title}
+              amount={account.amount}
+              description={account.description}
+            />
+          ))}
+        </div>
+      </main>
     </>
   );
 }

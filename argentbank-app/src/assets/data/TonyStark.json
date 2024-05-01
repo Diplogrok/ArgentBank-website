@@ -2,19 +2,19 @@
   {
     "id": 1,
     "title": "Argent Bank Checking(x8349)",
-    "number": "$2,082.79",
-    "legend": "Available Balance"
+    "amount": "$2,082.79",
+    "description": "Available Balance"
   },
   {
     "id": 2,
     "title": "Argent Bank Savings(x6712)",
-    "number": "$10,928.42",
-    "legend": "Available Balance"
+    "amount": "$10,928.42",
+    "description": "Available Balance"
   },
   {
     "id": 3,
     "title": "Argent Bank Credit Card(x8349)",
-    "number": "$184.30",
-    "legend": "Current Balance"
+    "amount": "$184.30",
+    "description": "Current Balance"
   }
 ]

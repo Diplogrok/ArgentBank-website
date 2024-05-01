@@ -7,6 +7,7 @@ import Root from "../pages/Root";
 import UserPage from "../pages/UserPage";
 import SignIn from "../pages/SignIn";
 import "../assets/css/index.css";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,12 +33,6 @@ const router = createBrowserRouter([
         <UserPage />
       </Layout>
     ),
-    loader: async () => {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts?_limit=10"
-      );
-      return response.json();
-    },
   },
 ]);
 
@@ -46,3 +41,11 @@ function App() {
 }
 
 export default App;
+
+/*
+ loader: async () => {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/posts?_limit=10"
+      );
+      return response.json();
+    }, */

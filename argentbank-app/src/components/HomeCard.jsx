@@ -1,6 +1,6 @@
 import React from "react";
 
-const Card = ({ icon, title, description }) => {
+const HomeCard = ({ icon, title, description }) => {
   return (
     <div className="flex flex-col items-center justify-center p-8">
       <div className="rounded-full bg-transparent border-8 border-green-500 p-4 mb-4">
@@ -16,4 +16,4 @@ const Card = ({ icon, title, description }) => {
   );
 };
 
-export default Card;
+export default HomeCard;
