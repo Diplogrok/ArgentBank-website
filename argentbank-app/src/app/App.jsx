@@ -16,7 +16,11 @@ const router = createBrowserRouter([
         <Root />
       </Layout>
     ),
-    errorElement: <PageError />,
+    errorElement: (
+      <Layout>
+        <PageError />
+      </Layout>
+    ),
   },
   {
     path: "SignIn",

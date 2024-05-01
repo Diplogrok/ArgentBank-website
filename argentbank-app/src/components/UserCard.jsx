@@ -11,11 +11,11 @@ const UserCard = ({ title, amount, description }) => {
   };
 
   return (
-    <section className="flex flex-col md:flex-row justify-between bg-white my-4 md:p-8">
+    <section className="flex flex-col md:flex-row justify-between bg-white w-3/4 m-4 p-6">
       <div className="text-left">
-        <h3 className="text-lg md:text-xl">{title}</h3>
-        <p className="text-2xl md:text-3xl font-bold">{amount}</p>
-        <p className="">{description}</p>
+        <h3 className="text-lg">{title}</h3>
+        <p className="text-4xl font-bold">{amount}</p>
+        <p className="text-lg">{description}</p>
       </div>
       <div className="flex flex-col md:flex-row md:items-center">
         <Button

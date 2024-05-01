@@ -4,8 +4,8 @@ import SignInForm from "../components/SignInForm";
 function SignIn() {
   return (
     <div className="flex flex-col">
-      <div className="flex-grow bg-violet-950 pb-80">
-        <div className="flex justify-center pt-12">
+      <div className="flex-grow bg-customPurple pb-96">
+        <div className="flex justify-center pt-11">
           <SignInForm />
         </div>
       </div>

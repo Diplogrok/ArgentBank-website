@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 const Button = ({ children, onClick, className, options = {} }) => {
   const buttonClasses = classNames(
-    "py-2 px-4 bg-green-500 text-white",
+    "py-2 px-4 bg-customGreen text-white font-bold",
     {
       "border-2 border-b-transparent border-r-transparent border-t-black border-l-black":
         options.border2TopLeft,

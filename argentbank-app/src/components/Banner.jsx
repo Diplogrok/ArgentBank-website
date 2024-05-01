@@ -1,16 +1,22 @@
 import React from "react";
-import bankTreeImage from "../assets/img/bank-tree.jpeg";
+import useMedia from "react-use/lib/useMedia";
+import bankTreeImage from "../assets/img/bank-tree.webp";
+import bankTreeMobileImage from "../assets/img/bank-tree-mobile.webp";
 
 const Banner = () => {
+  const isMobile = useMedia("(max-width: 767px)");
+
   return (
     <div
       className="bg-cover bg-center bg-no-repeat flex items-center justify-center sm:justify-end pf-0 sm:pr-28"
       style={{
-        backgroundImage: `url(${bankTreeImage})`,
+        backgroundImage: `url(${
+          isMobile ? bankTreeMobileImage : bankTreeImage
+        })`,
         height: "400px",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
+        backgroundPosition: "top",
       }}>
       <div className="bg-white text-left p-8 w-80">
         <h2 className="sr-only">Promoted Content</h2>

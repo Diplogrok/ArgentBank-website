@@ -13,14 +13,15 @@ function UserPage() {
   };
   return (
     <>
-      <main className="bg-violet-950">
-        <div className="text-white">
-          <h1 className="font-bold text-1xl md:text-2xl lg:text-3xl">
+      <main className="bg-customPurple pb-24">
+        <div className="text-white p-6">
+          <h1 className="font-bold text-3xl  pb-6">
             Welcome back
             <br />
             Tony Stark!
           </h1>
           <Button
+            className="text-xs"
             onClick={handleButtonClick}
             options={{
               border2TopLeft: clicked,
@@ -29,7 +30,7 @@ function UserPage() {
             Edit Name
           </Button>
         </div>
-        <div>
+        <div className="flex flex-col items-center">
           <h2 className="sr-only">Accounts</h2>
           {userData.map((account) => (
             <UserCard

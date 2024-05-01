@@ -8,8 +8,6 @@ function SignInForm() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  
-
   const handleSignIn = () => {};
 
   return (
@@ -35,7 +33,7 @@ function SignInForm() {
           onChange={() => setRememberMe(!rememberMe)}
         />
       </div>
-      <Button className="w-full" onClick={handleSignIn}>
+      <Button className="w-full underline" onClick={handleSignIn}>
         Sign In
       </Button>
     </form>
