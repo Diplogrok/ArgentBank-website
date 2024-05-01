@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../components/Button";
 import UserCard from "../components/UserCard";
 import userData from "../assets/data/TonyStark.json";
 
 function UserPage() {
+  const [clicked, setClicked] = useState(false);
+  const handleButtonClick = () => {
+    setClicked(true);
+    setTimeout(() => {
+      setClicked(false);
+    }, 100);
+  };
   return (
     <>
-      <main className=" bg-violet-950 flex flex-col items-center justify-center">
-        <div className=" text-white text-center">
-          <h1 className=" font-bold text-1xl md:text-2xl lg:text-3xl">
+      <main className="bg-violet-950">
+        <div className="text-white">
+          <h1 className="font-bold text-1xl md:text-2xl lg:text-3xl">
             Welcome back
             <br />
             Tony Stark!
           </h1>
-          <Button>Edit Name</Button>
+          <Button
+            onClick={handleButtonClick}
+            options={{
+              border2TopLeft: clicked,
+              border2BottomRight: !clicked,
+            }}>
+            Edit Name
+          </Button>
         </div>
         <div>
           <h2 className="sr-only">Accounts</h2>

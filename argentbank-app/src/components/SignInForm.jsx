@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 import FormInput from "./FormInput";
@@ -9,10 +8,12 @@ function SignInForm() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
+  
+
   const handleSignIn = () => {};
 
   return (
-    <form className="bg-white p-4 pr-12 pl-12">
+    <form className="bg-white p-4 pr-12 pl-12 ">
       <i className="fa fa-user-circle sign-in-icon pt-4 pb-4"></i>
       <h1 className="text-2xl font-bold mb-8">Sign In</h1>
       <FormInput
@@ -34,10 +35,9 @@ function SignInForm() {
           onChange={() => setRememberMe(!rememberMe)}
         />
       </div>
-      <Button onClick={handleSignIn}>Sign In</Button>
-      <NavLink to="/UserPage" className=" mt-4  text-purple-500">
-        Go to User Page
-      </NavLink>
+      <Button className="w-full" onClick={handleSignIn}>
+        Sign In
+      </Button>
     </form>
   );
 }
