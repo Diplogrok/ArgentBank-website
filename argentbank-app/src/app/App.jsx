@@ -6,6 +6,7 @@ import Root from "../pages/Root";
 import UserPage from "../pages/UserPage";
 import SignIn from "../pages/SignIn";
 import "../assets/css/index.css";
+import Counter from "../features/counter/Counter";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           element={
             <Layout>
               <Root />
+              <Counter />
             </Layout>
           }
         />
