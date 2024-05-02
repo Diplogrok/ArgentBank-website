@@ -1,6 +1,5 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
-import { RouterProvider } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PageError from "../pages/PageError";
 import Layout from "../components/Layout";
 import Root from "../pages/Root";
@@ -8,40 +7,45 @@ import UserPage from "../pages/UserPage";
 import SignIn from "../pages/SignIn";
 import "../assets/css/index.css";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <Layout>
-        <Root />
-      </Layout>
-    ),
-    errorElement: (
-      <Layout>
-        <PageError />
-      </Layout>
-    ),
-  },
-  {
-    path: "SignIn",
-    element: (
-      <Layout>
-        <SignIn />
-      </Layout>
-    ),
-  },
-  {
-    path: "UserPage",
-    element: (
-      <Layout>
-        <UserPage />
-      </Layout>
-    ),
-  },
-]);
-
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <Root />
+            </Layout>
+          }
+        />
+        <Route
+          path="SignIn"
+          element={
+            <Layout>
+              <SignIn />
+            </Layout>
+          }
+        />
+        <Route
+          path="UserPage"
+          element={
+            <Layout>
+              <UserPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/*"
+          element={
+            <Layout>
+              <PageError />
+            </Layout>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
