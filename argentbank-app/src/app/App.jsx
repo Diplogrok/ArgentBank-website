@@ -20,7 +20,7 @@ function App() {
           }
         />
         <Route
-          path="SignIn"
+          path="/SignIn"
           element={
             <Layout>
               <SignIn />
@@ -28,7 +28,7 @@ function App() {
           }
         />
         <Route
-          path="UserPage"
+          path="/UserPage"
           element={
             <Layout>
               <UserPage />
