@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Axios from "axios";
 
-// Action asynchrone pour la déconnexion de l'utilisateur
-export const logoutUser = () => (dispatch) => {
-  dispatch(userLoggedOutAction());
-};
+export const logoutUser = createAsyncThunk(
+  "user/logoutUser",
+  async (_, { dispatch }) => {
+    dispatch(userLoggedOutAction());
+  }
+);
 
-// Action asynchrone pour la connexion de l'utilisateur
 export const loginUser = createAsyncThunk(
   "user/loginUser",
   async (userCredentials) => {
@@ -23,19 +24,42 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const UserProfile = createAsyncThunk(
+  "user/UserProfile",
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.user.token;
+    try {
+      const response = await Axios.post(
+        "http://localhost:3001/api/v1/user/profile",
+        null,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data.body;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
 // Définition du slice de l'utilisateur
 const userSlice = createSlice({
   name: "user",
   initialState: {
     loading: false,
     user: null,
+    token: null,
     error: null,
   },
   reducers: {
-    // Réduire l'action lorsque l'utilisateur est déconnecté
     userLoggedOutAction: (state) => {
       state.loading = false;
       state.user = null;
+      state.token = null;
       state.error = null;
     },
   },
@@ -47,6 +71,12 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.user;
+        state.token = action.payload.body.token;
+        state.error = null;
+      })
+      .addCase(UserProfile.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
         state.error = null;
@@ -63,6 +93,11 @@ const userSlice = createSlice({
         } else if (action.error.message.includes("500")) {
           state.error = "An error occurred. Please try again later.";
         }
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.loading = false;
+        state.user = null;
+        state.error = null;
       });
   },
 });

@@ -5,6 +5,7 @@ import FormInput from "./FormInput";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../features/user/userSlice";
 import { useNavigate } from "react-router-dom";
+import { UserProfile } from "../features/user/userSlice";
 
 function SignInForm() {
   const [email, setEmail] = useState("");
@@ -32,6 +33,7 @@ function SignInForm() {
       if (payload) {
         console.log("Login successful. Redirecting to UserPage...");
         localStorage.setItem("token", payload.token);
+        dispatch(UserProfile(payload.token)); // Appel de l'action pour récupérer les infos utilisateur
         navigate("/UserPage");
       } else if (resultError) {
         console.error("An error occurred during login:", resultError);

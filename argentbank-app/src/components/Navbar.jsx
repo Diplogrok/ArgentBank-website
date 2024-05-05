@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logoutUser } from "../features/user/userSlice";
 import ArgentBankLogo from "../assets/img/argentBankLogo.png";
+import { logoutUser } from "../features/user/userSlice";
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
@@ -10,11 +10,12 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    console.log("Déconnexion réussie !");
   };
 
   return (
-    <header className=" py-2 px-5">
-      <nav className="flex items-center justify-between ">
+    <header className="py-2 px-5">
+      <nav className="flex items-center justify-between">
         <NavLink to="/" className="flex items-center">
           <img
             src={ArgentBankLogo}
@@ -27,7 +28,7 @@ const Navbar = () => {
           {user ? (
             <NavLink
               to="/SignIn"
-              onClick={handleLogout}
+              onClick={handleLogout} // Appeler handleLogout lorsque l'utilisateur clique sur "Sign Out"
               className="text-gray-700 font-bold mr-2 hover:underline">
               <i className="fa fa-sign-out-alt mr-1"></i>
               Sign Out
