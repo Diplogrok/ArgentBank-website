@@ -43,7 +43,7 @@ function App() {
                 <UserPage />
               </Layout>
             ) : (
-              <Navigate to="/SignIn" />
+              <Navigate to="/" />
             )
           }
         />

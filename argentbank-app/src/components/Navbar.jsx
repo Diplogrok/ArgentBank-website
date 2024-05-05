@@ -28,7 +28,7 @@ const Navbar = () => {
         <div>
           {user ? (
             <NavLink
-              to="/SignIn"
+              to="/"
               onClick={handleLogout}
               className="text-gray-700 font-bold mr-2 hover:underline">
               <i className="fa fa-sign-out-alt mr-1"></i>

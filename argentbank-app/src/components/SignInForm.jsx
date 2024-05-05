@@ -19,19 +19,16 @@ function SignInForm() {
 
   const handleLoginEvent = async (e) => {
     e.preventDefault();
-    console.log("Attempting to log in...");
     try {
       let userCredentials = {
         email,
         password,
       };
       const resultAction = await dispatch(loginUser(userCredentials));
-      console.log("Login attempt result action:", resultAction);
+
       const { payload, error: resultError } = resultAction;
-      console.log("Payload:", payload);
-      console.log("Error:", resultError);
+
       if (payload) {
-        console.log("Login successful. Redirecting to UserPage...");
         localStorage.setItem("token", payload.token);
         dispatch(UserProfile(payload.token));
         navigate("/UserPage");

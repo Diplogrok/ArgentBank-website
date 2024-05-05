@@ -23,7 +23,6 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
-
 export const UserProfile = createAsyncThunk(
   "user/UserProfile",
   async (_, thunkAPI) => {
@@ -39,6 +38,7 @@ export const UserProfile = createAsyncThunk(
           },
         }
       );
+      console.log(response.data.body);
       return response.data.body;
     } catch (error) {
       throw error;
@@ -46,7 +46,6 @@ export const UserProfile = createAsyncThunk(
   }
 );
 
-// Définition du slice de l'utilisateur
 const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -54,6 +53,7 @@ const userSlice = createSlice({
     user: null,
     token: null,
     error: null,
+    userData: [],
   },
   reducers: {
     userLoggedOutAction: (state) => {
