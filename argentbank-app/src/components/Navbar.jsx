@@ -11,6 +11,7 @@ const Navbar = () => {
   const handleLogout = () => {
     dispatch(logoutUser());
     console.log("Déconnexion réussie !");
+    localStorage.removeItem("token");
   };
 
   return (
@@ -28,7 +29,7 @@ const Navbar = () => {
           {user ? (
             <NavLink
               to="/SignIn"
-              onClick={handleLogout} // Appeler handleLogout lorsque l'utilisateur clique sur "Sign Out"
+              onClick={handleLogout}
               className="text-gray-700 font-bold mr-2 hover:underline">
               <i className="fa fa-sign-out-alt mr-1"></i>
               Sign Out

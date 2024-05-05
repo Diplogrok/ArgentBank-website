@@ -33,7 +33,7 @@ function SignInForm() {
       if (payload) {
         console.log("Login successful. Redirecting to UserPage...");
         localStorage.setItem("token", payload.token);
-        dispatch(UserProfile(payload.token)); // Appel de l'action pour récupérer les infos utilisateur
+        dispatch(UserProfile(payload.token));
         navigate("/UserPage");
       } else if (resultError) {
         console.error("An error occurred during login:", resultError);

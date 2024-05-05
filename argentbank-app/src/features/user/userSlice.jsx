@@ -98,6 +98,7 @@ const userSlice = createSlice({
         state.loading = false;
         state.user = null;
         state.error = null;
+        state.token = null;
       });
   },
 });

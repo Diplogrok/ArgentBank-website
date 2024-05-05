@@ -1,15 +1,23 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import PageError from "../pages/PageError";
 import Layout from "../components/Layout";
 import Root from "../pages/Root";
 import UserPage from "../pages/UserPage";
 import SignIn from "../pages/SignIn";
+import { useSelector } from "react-redux";
 import "../assets/css/index.css";
 
 function App() {
+  const isAuthenticated = useSelector((state) => state.user.token !== null);
+
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route
           path="/"
@@ -30,9 +38,13 @@ function App() {
         <Route
           path="/UserPage"
           element={
-            <Layout>
-              <UserPage />
-            </Layout>
+            isAuthenticated ? (
+              <Layout>
+                <UserPage />
+              </Layout>
+            ) : (
+              <Navigate to="/SignIn" />
+            )
           }
         />
         <Route
@@ -44,16 +56,8 @@ function App() {
           }
         />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
 export default App;
-
-/*
- loader: async () => {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts?_limit=10"
-      );
-      return response.json();
-    }, */
