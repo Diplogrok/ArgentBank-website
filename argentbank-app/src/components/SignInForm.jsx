@@ -5,15 +5,14 @@ import FormInput from "./FormInput";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../features/user/userSlice";
 import { useNavigate } from "react-router-dom";
-import { UserProfile } from "../features/user/userSlice";
+import { userProfile } from "../features/user/userSlice";
 
 function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  const { loading, error } = useSelector((state) => state.user);
-
+  const { loading, error, profileData } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -24,13 +23,18 @@ function SignInForm() {
         email,
         password,
       };
+      console.log("User credentials:", userCredentials); // Ajout du console.log pour afficher les informations d'identification de l'utilisateur
       const resultAction = await dispatch(loginUser(userCredentials));
+      console.log("Result action:", resultAction); // Ajout du console.log pour afficher le résultat de l'action de connexion
 
       const { payload, error: resultError } = resultAction;
 
       if (payload) {
         localStorage.setItem("token", payload.token);
-        dispatch(UserProfile(payload.token));
+        if (!profileData) {
+          console.log("Dispatching userProfile action"); // Ajout du console.log pour indiquer l'envoi de l'action userProfile
+          dispatch(userProfile(payload.token));
+        }
         navigate("/UserPage");
       } else if (resultError) {
         console.error("An error occurred during login:", resultError);

@@ -23,25 +23,28 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
-export const UserProfile = createAsyncThunk(
+export const userProfile = createAsyncThunk(
   "user/UserProfile",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    const token = state.user.token;
-    try {
-      const response = await Axios.post(
-        "http://localhost:3001/api/v1/user/profile",
-        null,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(response.data.body);
-      return response.data.body;
-    } catch (error) {
-      throw error;
+    const { token, profileLoaded } = state.user; // Obtenez le token et le statut de chargement du profil
+    if (!profileLoaded) {
+      // Vérifiez si le profil n'est pas encore chargé
+      try {
+        const response = await Axios.post(
+          "http://localhost:3001/api/v1/user/profile",
+          null,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(response.data.body);
+        return response.data.body;
+      } catch (error) {
+        throw error;
+      }
     }
   }
 );
@@ -54,6 +57,8 @@ const userSlice = createSlice({
     token: null,
     error: null,
     userData: [],
+    profileLoaded: false,
+    profileData: null,
   },
   reducers: {
     userLoggedOutAction: (state) => {
@@ -76,10 +81,12 @@ const userSlice = createSlice({
         state.token = action.payload.body.token;
         state.error = null;
       })
-      .addCase(UserProfile.fulfilled, (state, action) => {
+      .addCase(userProfile.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
         state.error = null;
+        state.profileLoaded = true;
+        state.profileData = action.payload;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;

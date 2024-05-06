@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "../components/Button";
 import UserCard from "../components/UserCard";
-import { UserProfile } from "../features/user/userSlice";
+import { userProfile } from "../features/user/userSlice";
 import Data from "../assets/data/UserPage.json";
+import WelcomeMessage from "../components/WelcomeMessage";
 
 function UserPage() {
   const [clicked, setClicked] = useState(false);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const userData = useSelector((state) => state.user.userData);
 
   useEffect(() => {
-    if (user.token) {
-      dispatch(UserProfile());
+    if (user.token && !user.profileData) {
+      dispatch(userProfile());
     }
-  }, [user.token, dispatch]);
+  }, [user.token, user.profileData, dispatch]);
 
   const handleButtonClick = () => {
     setClicked(true);
@@ -24,20 +24,14 @@ function UserPage() {
     }, 100);
   };
 
-  const firstName = user.user ? user.user.firstName : "";
-  const lastName = user.user ? user.user.lastName : "";
-
-  const personalMessage = `${firstName} ${lastName}!`;
-
   return (
     <>
       <main className="bg-customPurple pb-24">
         <div className="text-white p-6">
-          <h1 className="font-bold text-3xl pb-6">
-            {" "}
-            Welcome Back <br />
-            {personalMessage}
-          </h1>
+          <WelcomeMessage
+            firstName={user.user?.firstName}
+            lastName={user.user?.lastName}
+          />
           <Button
             className="text-xs"
             onClick={handleButtonClick}
