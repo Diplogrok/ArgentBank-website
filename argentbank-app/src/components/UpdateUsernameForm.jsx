@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 
 const UpdateUsernameForm = ({
@@ -8,10 +9,15 @@ const UpdateUsernameForm = ({
   onSubmit,
 }) => {
   const [newUsername, setNewUsername] = useState(currentUsername || "");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(newUsername);
+  };
+
+  const handleCancel = () => {
+    navigate("/UserPage");
   };
 
   return (
@@ -19,9 +25,7 @@ const UpdateUsernameForm = ({
       onSubmit={handleSubmit}
       className="flex flex-col items-center space-y-4">
       <div className="flex items-center">
-        <label
-          htmlFor="newUsername"
-          className="text-sm font-medium text-gray-700 w-24">
+        <label htmlFor="newUsername" className="text-sm font-medium  w-24">
           User name:
         </label>
         <input
@@ -33,38 +37,37 @@ const UpdateUsernameForm = ({
         />
       </div>
       <div className="flex items-center">
-        <label
-          htmlFor="currentFirstName"
-          className="text-sm font-medium text-gray-700 w-24">
+        <label htmlFor="currentFirstName" className="text-sm font-medium w-24">
           First name:
         </label>
         <input
           type="text"
           id="currentFirstName"
-          value={currentFirstName}
+          defaultValue={currentFirstName}
           className="border rounded"
           disabled
         />
       </div>
       <div className="flex items-center">
-        <label
-          htmlFor="currentLastName"
-          className="text-sm font-medium text-gray-700 w-24">
+        <label htmlFor="currentLastName" className="text-sm font-medium w-24">
           Last name:
         </label>
         <input
           type="text"
           id="currentLastName"
-          value={currentLastName}
+          defaultValue={currentLastName}
           className="border rounded"
           disabled
         />
       </div>
       <div className="items-center space-x-4">
-        <Button type="submit" className="rounded py-2 px-8">
+        <Button type="submit" className="rounded py-3 px-10">
           Update
         </Button>
-        <Button type="" className="rounded py-2 px-8">
+        <Button
+          type="button"
+          className="rounded py-3 px-10"
+          onClick={handleCancel}>
           Cancel
         </Button>
       </div>

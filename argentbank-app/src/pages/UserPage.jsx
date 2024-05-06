@@ -45,14 +45,15 @@ function UserPage() {
             </Button>
           </Link>
         </div>
-        <div className="flex flex-col items-center">
-          <h2 className="sr-only">Accounts</h2>
+        <div className="flex flex-col items-center ">
           {Data.map((account) => (
             <UserCard
               key={account.id}
               title={account.title}
               amount={account.amount}
               description={account.description}
+              elementType="button"
+              className="bg-white flex-col md:flex-row"
             />
           ))}
         </div>

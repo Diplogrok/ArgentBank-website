@@ -63,8 +63,7 @@ export const updateUserProfile = createAsyncThunk(
         }
       );
 
-      const { userName } = updatedProfileData;
-      return { ...response.data, userName };
+      return updatedProfileData;
     } catch (error) {
       throw error;
     }
