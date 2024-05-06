@@ -5,7 +5,7 @@ import ArgentBankLogo from "../assets/img/argentBankLogo.png";
 import { logoutUser } from "../features/user/userSlice";
 
 const Navbar = () => {
-  const { user } = useSelector((state) => state.user);
+  const { user, profileData } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -27,13 +27,23 @@ const Navbar = () => {
         </NavLink>
         <div>
           {user ? (
-            <NavLink
-              to="/"
-              onClick={handleLogout}
-              className="text-gray-700 font-bold mr-2 hover:underline">
-              <i className="fa fa-sign-out-alt mr-1"></i>
-              Sign Out
-            </NavLink>
+            <div className="flex items-center">
+              <i className="fa fa-user-circle pt-4 pb-4 pr-1"></i>
+              {profileData && (
+                <NavLink
+                  to="/UserPage"
+                  className="text-gray-700 font-bold mr-2 hover:underline">
+                  {profileData.userName}
+                </NavLink>
+              )}
+              <NavLink
+                to="/"
+                onClick={handleLogout}
+                className="text-gray-700 font-bold mr-2 hover:underline">
+                <i className="fa fa-sign-out-alt mr-1"></i>
+                Sign Out
+              </NavLink>
+            </div>
           ) : (
             <NavLink
               to="/SignIn"

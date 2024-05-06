@@ -30,10 +30,8 @@ function SignInForm() {
 
       if (payload) {
         localStorage.setItem("token", payload.token);
-        if (!profileData) {
-          console.log("Dispatching userProfile action");
-          dispatch(userProfile());
-        }
+        console.log("Dispatching userProfile action");
+        dispatch(userProfile());
         navigate("/UserPage");
       } else if (resultError) {
         console.error("An error occurred during login:", resultError);
@@ -47,7 +45,7 @@ function SignInForm() {
 
   return (
     <form className="bg-white p-4 pr-12 pl-12" onSubmit={handleLoginEvent}>
-      <i className="fa fa-user-circle sign-in-icon pt-4 pb-4"></i>
+      <i className="fa fa-user-circle pt-4 pb-4"></i>
       <h1 className="text-2xl font-bold mb-8">Sign In</h1>
       <FormInput
         label="Email"
