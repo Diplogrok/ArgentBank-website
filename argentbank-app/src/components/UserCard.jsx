@@ -19,6 +19,7 @@ const UserCard = ({ title, amount, description }) => {
       </div>
       <div className="flex flex-col md:flex-row md:items-center">
         <Button
+          className="py-2 px-4"
           onClick={handleButtonClick}
           options={{
             border2TopLeft: clicked,

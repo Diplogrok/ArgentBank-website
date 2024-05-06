@@ -35,7 +35,7 @@ function UserPage() {
             {" "}
             {/* Utilisez Link pour naviguer vers EditUserInfo */}
             <Button
-              className="text-xs"
+              className="text-xs py-2 px-4"
               onClick={handleButtonClick}
               options={{
                 border2TopLeft: clicked,

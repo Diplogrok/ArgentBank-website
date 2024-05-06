@@ -66,7 +66,7 @@ function SignInForm() {
           onChange={() => setRememberMe(!rememberMe)}
         />
       </div>
-      <Button className="w-full underline" type="submit">
+      <Button className="w-full underline py-2 px-4" type="submit">
         {loading ? "loading..." : "Sign in"}
       </Button>
       {error && <div>{error}</div>}

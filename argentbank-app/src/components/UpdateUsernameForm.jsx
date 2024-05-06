@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "./Button";
 
 const UpdateUsernameForm = ({
   currentUsername,
@@ -59,9 +60,14 @@ const UpdateUsernameForm = ({
           disabled
         />
       </div>
-      <button type="submit" className="">
-        Update
-      </button>
+      <div className="items-center space-x-4">
+        <Button type="submit" className="rounded py-2 px-8">
+          Update
+        </Button>
+        <Button type="" className="rounded py-2 px-8">
+          Cancel
+        </Button>
+      </div>
     </form>
   );
 };
