@@ -27,9 +27,8 @@ export const userProfile = createAsyncThunk(
   "user/UserProfile",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    const { token, profileLoaded } = state.user; // Obtenez le token et le statut de chargement du profil
+    const { token, profileLoaded } = state.user;
     if (!profileLoaded) {
-      // Vérifiez si le profil n'est pas encore chargé
       try {
         const response = await Axios.post(
           "http://localhost:3001/api/v1/user/profile",
@@ -45,6 +44,29 @@ export const userProfile = createAsyncThunk(
       } catch (error) {
         throw error;
       }
+    }
+  }
+);
+
+export const updateUserProfile = createAsyncThunk(
+  "user/updateUserProfile",
+  async (updatedProfileData, { getState }) => {
+    try {
+      const token = getState().user.token;
+      const response = await Axios.put(
+        "http://localhost:3001/api/v1/user/profile",
+        updatedProfileData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const { userName } = updatedProfileData;
+      return { ...response.data, userName };
+    } catch (error) {
+      throw error;
     }
   }
 );
@@ -108,6 +130,9 @@ const userSlice = createSlice({
         state.user = null;
         state.error = null;
         state.token = null;
+      })
+      .addCase(updateUserProfile.fulfilled, (state, action) => {
+        state.profileData = action.payload;
       });
   },
 });

@@ -21,7 +21,7 @@ const Navbar = ({ variant }) => {
   return (
     <header className="py-2 px-5">
       <nav className="flex items-center justify-between">
-        {variant === "edit" ? ( // Condition pour afficher le logo édité en mode "edit"
+        {variant === "edit" ? (
           <NavLink to="/" className="flex items-center">
             <img
               src={EditArgentBankLogo}
@@ -32,7 +32,6 @@ const Navbar = ({ variant }) => {
         ) : (
           <NavLink to="/" className="flex items-center">
             {" "}
-            {/* Affichage du logo normal */}
             <img
               src={ArgentBankLogo}
               alt="Argent Bank Logo"
