@@ -20,9 +20,9 @@ const Navbar = ({ variant }) => {
 
   return (
     <header className="py-2 px-5">
-      <nav className="flex items-center justify-between">
+      <nav className="flex items-center justify-center md:justify-between flex-col md:flex-row">
         {variant === "edit" ? (
-          <NavLink to="/" className="flex items-center">
+          <NavLink to="/">
             <img
               src={EditArgentBankLogo}
               alt="Argent Bank Logo"
@@ -30,8 +30,7 @@ const Navbar = ({ variant }) => {
             />
           </NavLink>
         ) : (
-          <NavLink to="/" className="flex items-center">
-            {" "}
+          <NavLink to="/">
             <img
               src={ArgentBankLogo}
               alt="Argent Bank Logo"
@@ -39,9 +38,9 @@ const Navbar = ({ variant }) => {
             />
           </NavLink>
         )}
-        <div>
-          {user ? (
-            <div className="flex items-center">
+        <div className="flex items-center">
+          {user && (
+            <>
               {variant === "edit" && (
                 <>
                   {profileData && (
@@ -70,18 +69,19 @@ const Navbar = ({ variant }) => {
               <NavLink
                 to="/"
                 onClick={handleLogout}
-                className="text-gray-700 font-bold mr-2 hover:underline">
+                className="text-gray-700 font-bold hover:underline">
                 {variant === "edit" ? (
                   <i className={`fa fa-power-off ${EditColor} ${EditSize}`}></i>
                 ) : (
                   "Sign Out"
                 )}
               </NavLink>
-            </div>
-          ) : (
+            </>
+          )}
+          {!user && (
             <NavLink
               to="/SignIn"
-              className="text-gray-700 font-bold mr-2 hover:underline">
+              className="text-gray-700 font-bold hover:underline">
               Sign In
             </NavLink>
           )}
