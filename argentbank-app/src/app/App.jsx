@@ -6,10 +6,12 @@ import {
   Navigate,
 } from "react-router-dom";
 import PageError from "../pages/PageError";
-import Layout from "../components/Layout";
+import DefaultLayout from "../components/DefaultLayout";
+import EditLayout from "../components/EditLayout";
 import Root from "../pages/Root";
 import UserPage from "../pages/UserPage";
 import SignIn from "../pages/SignIn";
+import EditUserInfo from "../pages/EditUserInfo";
 import { useSelector } from "react-redux";
 import "../assets/css/index.css";
 
@@ -22,26 +24,38 @@ function App() {
         <Route
           path="/"
           element={
-            <Layout>
+            <DefaultLayout>
               <Root />
-            </Layout>
+            </DefaultLayout>
           }
         />
         <Route
           path="/SignIn"
           element={
-            <Layout>
+            <DefaultLayout>
               <SignIn />
-            </Layout>
+            </DefaultLayout>
           }
         />
         <Route
           path="/UserPage"
           element={
             isAuthenticated ? (
-              <Layout>
+              <DefaultLayout>
                 <UserPage />
-              </Layout>
+              </DefaultLayout>
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+        <Route
+          path="/EditUserInfo"
+          element={
+            isAuthenticated ? (
+              <EditLayout>
+                <EditUserInfo />
+              </EditLayout>
             ) : (
               <Navigate to="/" />
             )
@@ -50,9 +64,9 @@ function App() {
         <Route
           path="/*"
           element={
-            <Layout>
+            <DefaultLayout>
               <PageError />
-            </Layout>
+            </DefaultLayout>
           }
         />
       </Routes>

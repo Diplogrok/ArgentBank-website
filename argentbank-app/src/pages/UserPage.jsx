@@ -5,6 +5,7 @@ import UserCard from "../components/UserCard";
 import { userProfile } from "../features/user/userSlice";
 import Data from "../assets/data/UserPage.json";
 import WelcomeMessage from "../components/WelcomeMessage";
+import { Link } from "react-router-dom";
 
 function UserPage() {
   const [clicked, setClicked] = useState(false);
@@ -30,15 +31,19 @@ function UserPage() {
             firstName={user.user?.firstName}
             lastName={user.user?.lastName}
           />
-          <Button
-            className="text-xs"
-            onClick={handleButtonClick}
-            options={{
-              border2TopLeft: clicked,
-              border2BottomRight: !clicked,
-            }}>
-            Edit Name
-          </Button>
+          <Link to="/EditUserInfo">
+            {" "}
+            {/* Utilisez Link pour naviguer vers EditUserInfo */}
+            <Button
+              className="text-xs"
+              onClick={handleButtonClick}
+              options={{
+                border2TopLeft: clicked,
+                border2BottomRight: !clicked,
+              }}>
+              Edit Profile
+            </Button>
+          </Link>
         </div>
         <div className="flex flex-col items-center">
           <h2 className="sr-only">Accounts</h2>

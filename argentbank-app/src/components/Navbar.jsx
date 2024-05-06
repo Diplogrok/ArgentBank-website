@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ArgentBankLogo from "../assets/img/argentBankLogo.png";
 import { logoutUser } from "../features/user/userSlice";
 
-const Navbar = () => {
+const Navbar = ({ variant }) => {
   const { user, profileData } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -13,6 +13,8 @@ const Navbar = () => {
     console.log("Déconnexion réussie !");
     localStorage.removeItem("token");
   };
+
+  const EditColor = variant === "edit" ? "text-customGreen" : "text-gray-700";
 
   return (
     <header className="py-2 px-5">
@@ -28,27 +30,46 @@ const Navbar = () => {
         <div>
           {user ? (
             <div className="flex items-center">
-              <i className="fa fa-user-circle pt-4 pb-4 pr-1"></i>
-              {profileData && (
-                <NavLink
-                  to="/UserPage"
-                  className="text-gray-700 font-bold mr-2 hover:underline">
-                  {profileData.userName}
-                </NavLink>
+              {variant === "edit" && (
+                <>
+                  {profileData && (
+                    <NavLink
+                      to="/UserPage"
+                      className={`${EditColor} font-bold mr-2 hover:underline`}>
+                      {profileData.userName}
+                    </NavLink>
+                  )}
+                  <i
+                    className={`fa fa-user-circle pt-4 pb-4 pr-1 ${EditColor}`}></i>
+                  <i className={`fa fa-gear pt-4 pb-4 pr-1 ${EditColor}`}></i>
+                </>
+              )}
+              {variant !== "edit" && profileData && (
+                <>
+                  <i
+                    className={`fa fa-user-circle pt-4 pb-4 pr-1 ${EditColor}`}></i>
+                  <NavLink
+                    to="/UserPage"
+                    className={`${EditColor} font-bold mr-2 hover:underline`}>
+                    {profileData.userName}
+                  </NavLink>
+                </>
               )}
               <NavLink
                 to="/"
                 onClick={handleLogout}
                 className="text-gray-700 font-bold mr-2 hover:underline">
-                <i className="fa fa-sign-out-alt mr-1"></i>
-                Sign Out
+                {variant === "edit" ? (
+                  <i className={`fa fa-power-off ${EditColor}`}></i>
+                ) : (
+                  "Sign Out"
+                )}
               </NavLink>
             </div>
           ) : (
             <NavLink
               to="/SignIn"
               className="text-gray-700 font-bold mr-2 hover:underline">
-              <i className="fa fa-user-circle mr-1"></i>
               Sign In
             </NavLink>
           )}
