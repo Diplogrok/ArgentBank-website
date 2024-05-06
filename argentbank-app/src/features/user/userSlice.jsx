@@ -66,6 +66,8 @@ const userSlice = createSlice({
       state.user = null;
       state.token = null;
       state.error = null;
+      state.profileLoaded = false;
+      state.profileData = null;
     },
   },
   extraReducers: (builder) => {

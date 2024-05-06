@@ -3,9 +3,8 @@ import Button from "./Button";
 import Checkbox from "./Checkbox";
 import FormInput from "./FormInput";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../features/user/userSlice";
+import { loginUser, userProfile } from "../features/user/userSlice";
 import { useNavigate } from "react-router-dom";
-import { userProfile } from "../features/user/userSlice";
 
 function SignInForm() {
   const [email, setEmail] = useState("");
@@ -23,17 +22,17 @@ function SignInForm() {
         email,
         password,
       };
-      console.log("User credentials:", userCredentials); // Ajout du console.log pour afficher les informations d'identification de l'utilisateur
+      console.log("User credentials:", userCredentials);
       const resultAction = await dispatch(loginUser(userCredentials));
-      console.log("Result action:", resultAction); // Ajout du console.log pour afficher le résultat de l'action de connexion
+      console.log("Result action:", resultAction);
 
       const { payload, error: resultError } = resultAction;
 
       if (payload) {
         localStorage.setItem("token", payload.token);
         if (!profileData) {
-          console.log("Dispatching userProfile action"); // Ajout du console.log pour indiquer l'envoi de l'action userProfile
-          dispatch(userProfile(payload.token));
+          console.log("Dispatching userProfile action");
+          dispatch(userProfile());
         }
         navigate("/UserPage");
       } else if (resultError) {

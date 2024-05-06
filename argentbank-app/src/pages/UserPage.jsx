@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "../components/Button";
 import UserCard from "../components/UserCard";
@@ -11,17 +11,15 @@ function UserPage() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (user.token && !user.profileData) {
-      dispatch(userProfile());
-    }
-  }, [user.token, user.profileData, dispatch]);
-
   const handleButtonClick = () => {
     setClicked(true);
     setTimeout(() => {
       setClicked(false);
     }, 100);
+
+    if (user.token && !user.profileData) {
+      dispatch(userProfile());
+    }
   };
 
   return (
