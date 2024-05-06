@@ -5,13 +5,13 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import PageError from "../pages/PageError";
 import DefaultLayout from "../components/DefaultLayout";
 import EditLayout from "../components/EditLayout";
 import Root from "../pages/Root";
 import UserPage from "../pages/UserPage";
 import SignIn from "../pages/SignIn";
 import EditUserInfo from "../pages/EditUserInfo";
+import PageError from "../pages/PageError"; // Importez PageError depuis le bon chemin
 import { useSelector } from "react-redux";
 import "../assets/css/index.css";
 
@@ -62,7 +62,7 @@ function App() {
           }
         />
         <Route
-          path="/*"
+          path="*"
           element={
             <DefaultLayout>
               <PageError />

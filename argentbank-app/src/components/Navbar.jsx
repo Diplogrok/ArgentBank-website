@@ -11,7 +11,6 @@ const Navbar = ({ variant }) => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
-    console.log("Déconnexion réussie !");
     localStorage.removeItem("token");
   };
 

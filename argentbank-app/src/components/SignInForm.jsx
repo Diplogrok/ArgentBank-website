@@ -11,7 +11,7 @@ function SignInForm() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  const { loading, error, profileData } = useSelector((state) => state.user);
+  const { loading, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,15 +22,12 @@ function SignInForm() {
         email,
         password,
       };
-      console.log("User credentials:", userCredentials);
       const resultAction = await dispatch(loginUser(userCredentials));
-      console.log("Result action:", resultAction);
 
       const { payload, error: resultError } = resultAction;
 
       if (payload) {
         localStorage.setItem("token", payload.token);
-        console.log("Dispatching userProfile action");
         dispatch(userProfile());
         navigate("/UserPage");
       } else if (resultError) {
@@ -69,7 +66,7 @@ function SignInForm() {
       <Button className="w-full underline py-2 px-4" type="submit">
         {loading ? "loading..." : "Sign in"}
       </Button>
-      {error && <div>{error}</div>}
+      {error && <div className="text-red-500">{error}</div>}
     </form>
   );
 }

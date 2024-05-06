@@ -1,11 +1,6 @@
 import React from "react";
-import { useRouteError } from "react-router-dom";
 
 function PageError() {
-  const error = useRouteError();
-
-  console.error("Une erreur est survenue :", error);
-
   const userMessage = "Une erreur est survenue. Veuillez réessayer plus tard.";
 
   return (

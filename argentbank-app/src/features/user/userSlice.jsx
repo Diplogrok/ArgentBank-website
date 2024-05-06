@@ -39,7 +39,7 @@ export const userProfile = createAsyncThunk(
             },
           }
         );
-        console.log(response.data.body);
+
         return response.data.body;
       } catch (error) {
         throw error;
@@ -63,6 +63,7 @@ export const updateUserProfile = createAsyncThunk(
         }
       );
 
+      const { userName } = updatedProfileData;
       return updatedProfileData;
     } catch (error) {
       throw error;

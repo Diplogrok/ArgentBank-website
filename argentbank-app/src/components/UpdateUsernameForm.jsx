@@ -9,11 +9,18 @@ const UpdateUsernameForm = ({
   onSubmit,
 }) => {
   const [newUsername, setNewUsername] = useState(currentUsername || "");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(newUsername);
+    // Vérifier si le nouvel username a au moins 3 caractères
+    if (newUsername.length >= 3) {
+      onSubmit(newUsername);
+    } else {
+      // Afficher un message d'erreur si l'username est trop court
+      setError("L'username doit avoir au moins 3 caractères.");
+    }
   };
 
   const handleCancel = () => {
@@ -32,10 +39,15 @@ const UpdateUsernameForm = ({
           type="text"
           id="newUsername"
           value={newUsername}
-          onChange={(e) => setNewUsername(e.target.value)}
+          onChange={(e) => {
+            setNewUsername(e.target.value);
+            // Effacer le message d'erreur lorsque l'utilisateur modifie l'username
+            setError("");
+          }}
           className="border rounded"
         />
       </div>
+      {error && <p className="text-red-500">{error}</p>}
       <div className="flex items-center">
         <label htmlFor="currentFirstName" className="text-sm font-medium w-24">
           First name:
