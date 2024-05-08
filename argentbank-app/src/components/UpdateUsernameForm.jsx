@@ -14,11 +14,9 @@ const UpdateUsernameForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Vérifier si le nouvel username a au moins 3 caractères
     if (newUsername.length >= 3) {
       onSubmit(newUsername);
     } else {
-      // Afficher un message d'erreur si l'username est trop court
       setError("L'username doit avoir au moins 3 caractères.");
     }
   };
@@ -41,7 +39,6 @@ const UpdateUsernameForm = ({
           value={newUsername}
           onChange={(e) => {
             setNewUsername(e.target.value);
-            // Effacer le message d'erreur lorsque l'utilisateur modifie l'username
             setError("");
           }}
           className="border rounded"

@@ -32,8 +32,6 @@ function UserPage() {
             lastName={user.user?.lastName}
           />
           <Link to="/EditUserInfo">
-            {" "}
-            {/* Utilisez Link pour naviguer vers EditUserInfo */}
             <Button
               className="text-xs py-2 px-4"
               onClick={handleButtonClick}

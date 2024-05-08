@@ -11,7 +11,7 @@ import Root from "../pages/Root";
 import UserPage from "../pages/UserPage";
 import SignIn from "../pages/SignIn";
 import EditUserInfo from "../pages/EditUserInfo";
-import PageError from "../pages/PageError"; // Importez PageError depuis le bon chemin
+import PageError from "../pages/PageError";
 import { useSelector } from "react-redux";
 import "../assets/css/index.css";
 

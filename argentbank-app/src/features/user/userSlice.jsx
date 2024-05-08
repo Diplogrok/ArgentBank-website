@@ -53,7 +53,7 @@ export const updateUserProfile = createAsyncThunk(
   async (updatedProfileData, { getState }) => {
     try {
       const token = getState().user.token;
-      const response = await Axios.put(
+      await Axios.put(
         "http://localhost:3001/api/v1/user/profile",
         updatedProfileData,
         {
@@ -63,7 +63,6 @@ export const updateUserProfile = createAsyncThunk(
         }
       );
 
-      const { userName } = updatedProfileData;
       return updatedProfileData;
     } catch (error) {
       throw error;
