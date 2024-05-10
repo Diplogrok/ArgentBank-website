@@ -1,13 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Axios from "axios";
 
-export const logoutUser = createAsyncThunk(
-  "user/logoutUser",
-  async (_, { dispatch }) => {
-    dispatch(userLoggedOutAction());
-  }
-);
+// Déconnexion de l'user
+export const logoutUser = createAsyncThunk("user/logoutUser", async () => {});
 
+// Connexion de l'user en envoyant une requête POST, en cas de réussite elle renvoie les données user
 export const loginUser = createAsyncThunk(
   "user/loginUser",
   async (userCredentials) => {
@@ -23,6 +20,8 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+// Récupération du profil de l'user en envoyant une requête POST avec le token + vérifie si le profil a déjà été chargé
 export const userProfile = createAsyncThunk(
   "user/UserProfile",
   async (_, thunkAPI) => {
@@ -48,6 +47,7 @@ export const userProfile = createAsyncThunk(
   }
 );
 
+// Mise à jour du profil (username) de l'user en envoyant une requête PUT
 export const updateUserProfile = createAsyncThunk(
   "user/updateUserProfile",
   async (updatedProfileData, { getState }) => {
@@ -81,16 +81,7 @@ const userSlice = createSlice({
     profileLoaded: false,
     profileData: null,
   },
-  reducers: {
-    userLoggedOutAction: (state) => {
-      state.loading = false;
-      state.user = null;
-      state.token = null;
-      state.error = null;
-      state.profileLoaded = false;
-      state.profileData = null;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, (state) => {
@@ -127,8 +118,10 @@ const userSlice = createSlice({
       .addCase(logoutUser.fulfilled, (state) => {
         state.loading = false;
         state.user = null;
-        state.error = null;
         state.token = null;
+        state.error = null;
+        state.profileLoaded = false;
+        state.profileData = null;
       })
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.profileData = action.payload;
@@ -136,5 +129,4 @@ const userSlice = createSlice({
   },
 });
 
-export const { userLoggedOutAction } = userSlice.actions;
 export default userSlice.reducer;
