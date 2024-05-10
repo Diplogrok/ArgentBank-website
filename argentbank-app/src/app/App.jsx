@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import "../assets/css/index.css";
 
 function App() {
+  // Vérifie si l'utilisateur est authentifié en vérifiant s'il y a un token dans le store Redux
   const isAuthenticated = useSelector((state) => state.user.token !== null);
 
   return (

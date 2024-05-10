@@ -7,9 +7,12 @@ import UserCard from "../components/UserCard";
 
 function EditUserInfo() {
   const dispatch = useDispatch();
+  // Sélecteur Redux pour récupérer les données de profil de l'utilisateur
   const { profileData } = useSelector((state) => state.user);
 
+  // Gestion de la soumission du formulaire de modification du nom d'utilisateur
   const handleSubmit = (newUsername) => {
+    // Envoie une action Redux pour mettre à jour le profil de l'utilisateur avec le nouveau nom d'utilisateur
     dispatch(updateUserProfile({ ...profileData, userName: newUsername }));
   };
 

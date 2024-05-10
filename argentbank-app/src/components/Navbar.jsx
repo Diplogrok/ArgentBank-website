@@ -6,14 +6,17 @@ import EditArgentBankLogo from "../assets/img/edit-argentBankLogo.png";
 import { logoutUser } from "../features/user/userSlice";
 
 const Navbar = ({ variant }) => {
+  // Récupère les informations sur l'utilisateur et son profil depuis le store Redux
   const { user, profileData } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
+  // Fonction de déconnexion de l'utilisateur
   const handleLogout = () => {
-    dispatch(logoutUser());
-    localStorage.removeItem("token");
+    dispatch(logoutUser()); // Déclenche l'action Redux pour déconnecter l'utilisateur
+    localStorage.removeItem("token"); // Supprime le token d'authentification du local storage
   };
 
+  // Détermine la couleur et la taille des icônes en fonction de la variante de la barre de navigation
   const EditColor = variant === "edit" ? "text-customGreen" : "text-gray-700";
   const EditSize = variant === "edit" ? "text-2xl" : "";
 

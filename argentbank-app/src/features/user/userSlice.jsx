@@ -70,6 +70,7 @@ export const updateUserProfile = createAsyncThunk(
   }
 );
 
+// Création du slice de l'user
 const userSlice = createSlice({
   name: "user",
   initialState: {

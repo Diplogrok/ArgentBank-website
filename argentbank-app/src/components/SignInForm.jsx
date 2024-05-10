@@ -7,28 +7,37 @@ import { loginUser, userProfile } from "../features/user/userSlice";
 import { useNavigate } from "react-router-dom";
 
 function SignInForm() {
+  // State Hooks pour gérer les champs du formulaire
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
+  // Sélecteur Redux pour récupérer loading et error du state
   const { loading, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Gestion de l'événement de connexion
   const handleLoginEvent = async (e) => {
     e.preventDefault();
     try {
+      // Crée un objet userCredentials avec l'email et le mot de passe
       let userCredentials = {
         email,
         password,
       };
+      // Envoie une action Redux pour effectuer la connexion
       const resultAction = await dispatch(loginUser(userCredentials));
 
+      // Extrait les données reçues de l'action Redux
       const { payload, error: resultError } = resultAction;
 
       if (payload) {
+        // Stocke le token d'authentification dans le stockage local du navigateur après une connexion réussie
         localStorage.setItem("token", payload.token);
+        // Envoie une action Redux pour récupérer le profil de l'utilisateur après la connexion
         dispatch(userProfile());
+        // Redirige l'utilisateur vers la page "UserPage" après une connexion réussie
         navigate("/UserPage");
       } else if (resultError) {
         console.error("An error occurred during login:", resultError);
